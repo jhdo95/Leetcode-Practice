@@ -33,6 +33,33 @@ Try to come up with as many solutions as you can. There are at least three diffe
 Could you do it in-place with O(1) extra space?
 """
 
+"""
+To solve this problem, we need to rotate the array to the right by k steps. There are multiple approaches to solve this problem, but one common approach involves using array slicing or reversing.
+
+Here's a step-by-step process to solve this problem:
+
+Handle Edge Cases: Check if the length of the array is 0 or if k is 0. If either condition is true, we don't need to perform any rotation, so we can return early.
+
+Handle Overflow: Since rotating an array by its length results in the same array, we can reduce k to k % len(nums) to handle cases where k is greater than the length of the array.
+
+Rotate the Array:
+
+Approach 1: Use Array Slicing
+Reverse the entire array.
+Reverse the first k elements.
+Reverse the remaining elements.
+Approach 2: Use Array Slicing (Pythonic)
+Assign nums to the result of slicing operation nums[-k:] + nums[:-k].
+Approach 3: Use Extra Space
+Create a new array and copy the elements in the rotated order.
+Approach 4: Use Cyclic Replacements
+Perform k cyclic replacements to move each element to its correct position.
+Approach 5: Use Extra Space and Pop
+Use the pop() method k times to remove the last element and insert it at the beginning.
+Return: Depending on the approach used, we may or may not need to return anything. If the array is modified in-place, we don't need to return anything. Otherwise, we return the modified array.
+
+Now, let's implement one of the approaches (Approach 1: Using Array Slicing) along with test cases:
+"""
 class Solution(object):
     def rotate(self, nums, k):
         """
@@ -75,3 +102,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+"""
+This implementation rotates the array in-place using array slicing and handles the provided test cases. 
+"""
