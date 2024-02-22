@@ -33,20 +33,18 @@ Constraints:
 """
 
 """
-To solve this problem, we need to find the maximum profit that can be achieved by buying and selling the stock. Since we can only hold at most one share of the stock at any time and we can buy and sell on the same day, we can consider every pair of consecutive days and calculate the profit if we buy on the first day and sell on the second day.
+we should accumulate the profits from ascending sequences of prices. This means that whenever we encounter a price that is higher than the previous day, we should add the difference between the current and previous prices to the total profit.
 
-Here's how we can approach this problem:
+Here's the revised approach:
 
-Initialize Variables: Initialize a variable max_profit to keep track of the maximum profit achieved so far. Set it to 0 initially.
+Initialize Variables: Initialize a variable total_profit to keep track of the total profit. Set it to 0 initially.
 
 Iterate Through Prices: Iterate through the prices array. For each pair of consecutive days:
 
-Calculate the profit if we buy on the current day and sell on the next day (prices[i + 1] - prices[i]).
-Update max_profit to be the maximum of the current max_profit and the calculated profit.
-Return Maximum Profit: After iterating through all pairs of consecutive days, return max_profit.
+If the current price is higher than the previous price, add the difference between the current and previous prices to total_profit.
+Return Total Profit: After iterating through all prices, return total_profit.
 
-This implementation finds the maximum profit by considering every pair of consecutive days, 
-making it efficient with a time complexity of O(n), where n is the length of the prices array.
+
 """
 class Solution(object):
     def maxProfit(self, prices):
@@ -55,16 +53,15 @@ class Solution(object):
         :rtype: int
         """
         # Initialize variable
-        max_profit = 0
+        total_profit = 0
         
         # Iterate through prices
-        for i in range(len(prices) - 1):
-            # Calculate profit for each pair of consecutive days
-            profit = prices[i + 1] - prices[i]
-            # Update max_profit
-            max_profit = max(max_profit, profit)
+        for i in range(1, len(prices)):
+            # Add profit if the current price is higher than the previous price
+            if prices[i] > prices[i - 1]:
+                total_profit += prices[i] - prices[i - 1]
         
-        return max_profit
+        return total_profit
 
 # Test cases
 def main():
