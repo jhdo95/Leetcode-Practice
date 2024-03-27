@@ -76,7 +76,7 @@ class Solution(object):
                 left += 1
 
         return min_window
-    
+
 solution = Solution()
 
 # Test Case 1
